@@ -76,4 +76,7 @@ public class Category {
     public void setStatus(Boolean status) {
         this.status = status;
     }
+    
+    @OneToMany(mappedBy = "category")
+    private java.util.List<Product> products;
 }
