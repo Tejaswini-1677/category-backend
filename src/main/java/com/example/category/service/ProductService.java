@@ -58,4 +58,10 @@ public class ProductService {
         product.setStatus(false);
         repo.save(product);
     }
+
+    // 🔥 Get single product by ID
+    public Product getProductById(Integer id) {
+        return repo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Product not found"));
+    }
 }
