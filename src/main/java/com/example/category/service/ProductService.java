@@ -1,10 +1,14 @@
 package com.example.category.service;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.example.category.entity.Product;
+import com.example.category.entity.Category;
 import com.example.category.repository.ProductRepository;
+import com.example.category.repository.CategoryRepository;
 
 @Service
 public class ProductService {
@@ -12,10 +16,15 @@ public class ProductService {
     @Autowired
     private ProductRepository repo;
 
+    @Autowired
+    private CategoryRepository categoryRepo;   // ✅ Added
+
+    // 🔥 Create
     public Product createProduct(Product product) {
         return repo.save(product);
     }
 
+    // 🔥 Get All (Only Active Products)
     public List<Product> getAllProducts() {
         return repo.findAll()
                    .stream()
@@ -23,6 +32,13 @@ public class ProductService {
                    .toList();
     }
 
+    // 🔥 NEW METHOD (Fix for your error)
+    public Category getCategoryById(Integer id) {
+        return categoryRepo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Category not found"));
+    }
+
+    // 🔥 Update
     public Product updateProduct(Integer id, Product newProduct) {
         Product product = repo.findById(id).orElseThrow();
 
@@ -36,9 +52,10 @@ public class ProductService {
         return repo.save(product);
     }
 
+    // 🔥 Soft Delete
     public void deleteProduct(Integer id) {
         Product product = repo.findById(id).orElseThrow();
-        product.setStatus(false);  // Soft delete
+        product.setStatus(false);
         repo.save(product);
     }
 }

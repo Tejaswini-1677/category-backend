@@ -10,6 +10,9 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer productId;
+    
+    @Column(name = "image_url")
+    private String imageUrl;
 
     @Column(nullable = false)
     private String productName;
@@ -36,6 +39,14 @@ public class Product {
 
     public void setProductId(Integer productId) {
         this.productId = productId;
+    }
+    
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public String getProductName() {
