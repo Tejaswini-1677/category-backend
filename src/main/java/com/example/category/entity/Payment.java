@@ -2,7 +2,9 @@ package com.example.category.entity;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
-import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 @Table(name = "payments")
@@ -15,7 +17,7 @@ public class Payment {
     // 🔥 Mapping with Order
     @ManyToOne
     @JoinColumn(name = "order_id", nullable = false)
-    @JsonBackReference
+    @JsonIgnore   // 🔥 FIX
     private Order order;
 
     private Double amount;
