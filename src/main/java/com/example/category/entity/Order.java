@@ -1,18 +1,18 @@
 package com.example.category.entity;
 
 import java.time.LocalDateTime;
-import java.util.List;
+//import java.util.List;
 
-import jakarta.persistence.CascadeType;
+//import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+//import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+//import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "orders")
@@ -111,8 +111,8 @@ public class Order {
 	public void setUpdatedAt(LocalDateTime updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-	@JsonManagedReference
-	private List<Payment> payments;
+	//@OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+	//@JsonManagedReference
+	//private List<Payment> payments;
     
 }
